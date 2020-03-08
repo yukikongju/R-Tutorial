@@ -1,5 +1,6 @@
-# urk: https://suzan.rbind.io/2018/01/dplyr-tutorial-1/
-
+# url: https://suzan.rbind.io/2018/01/dplyr-tutorial-1/
+# https://suzan.rbind.io/2018/01/dplyr-tutorial-1/
+# http://www.stat.columbia.edu/~gelman/communication/PruimHortonKaplan2014.pdf
 
 library(nycflights13)
 library(tidyverse)
