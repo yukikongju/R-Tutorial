@@ -3,7 +3,7 @@
 Links to the online tutorial that I took to learn R:
 
 R for Data Science: https://r4ds.had.co.nz/
-Text Mining with R: https://www.tidytextmining.com/
+\nText Mining with R: https://www.tidytextmining.com/
 Advanced R: https://adv-r.hadley.nz/
 The Elements of Statistical Learning : https://web.stanford.edu/~hastie/Papers/ESLII.pdf
 
