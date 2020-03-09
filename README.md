@@ -28,3 +28,7 @@ Links to the online tutorial that I took to learn R:
 * Linear Algebra: https://stanford.edu/~shervine/teaching/cme-102/linear-algebra
 * Calculus : https://stanford.edu/~shervine/teaching/cme-102/calculus
 * Trigonometry: https://stanford.edu/~shervine/teaching/cme-102/trigonometry
+
+# Study case
+
+* The State of Sport Data Visualization: https://www.readkong.com/page/state-of-the-art-of-sports-data-visualization
