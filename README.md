@@ -7,6 +7,7 @@ Links to the online tutorial that I took to learn R:
 * Text Mining with R: https://www.tidytextmining.com/
 * Graphic Interfaces with Shiny: https://geoviz.sciencesconf.org/data/pages/GeoViz2018_R_shiny.pdf
 * Creating Graph with ggplot2: https://www.r-graph-gallery.com/index.html
+* Shiny App Example and code: https://ibiostat.be/seminar/uploads/introdcution-r-shiny-package-20160330.pdf
 * Interactive Web applications with R, plotly and Shiny : https://plotly-r.com/index.html
 
 # Intermediate
