@@ -3,11 +3,11 @@
 Links to the online tutorial that I took to learn R:
 
 # Beginner 
-
 * R for Data Science: https://r4ds.had.co.nz/
 * Text Mining with R: https://www.tidytextmining.com/
 * Graphic Interfaces with Shiny: https://geoviz.sciencesconf.org/data/pages/GeoViz2018_R_shiny.pdf
 * Creating Graph with ggplot2: https://www.r-graph-gallery.com/index.html
+* Interactive Web applications with R, plotly and Shiny : https://plotly-r.com/index.html
 
 # Intermediate
 * Descriptive, Predictive and Prescriptive Analytics: https://afit-r.github.io/
