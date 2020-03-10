@@ -6,6 +6,7 @@ Links to the online tutorial that I took to learn R:
 
 * R for Data Science: https://r4ds.had.co.nz/
 * Text Mining with R: https://www.tidytextmining.com/
+* Graphic Interfaces with Shiny: https://geoviz.sciencesconf.org/data/pages/GeoViz2018_R_shiny.pdf
 * Creating Graph with ggplot2: https://www.r-graph-gallery.com/index.html
 
 # Intermediate
