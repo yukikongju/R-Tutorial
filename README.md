@@ -45,4 +45,4 @@ Links to the online tutorial that I took to learn R:
 * DT: handling dataset visualization
 * ggExtra: add elements to your plots
 * conflicted: prevent errors when using functions with same name
-
+* stringr: manage your strings
