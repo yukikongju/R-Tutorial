@@ -34,3 +34,15 @@ Links to the online tutorial that I took to learn R:
 # Study case
 
 * The State of Sport Data Visualization: https://www.readkong.com/page/state-of-the-art-of-sports-data-visualization
+
+# Packages
+
+* dplyr: data wrangling
+* ggplot2: data visualisation
+* rvest: data scrapping
+* plotly: dynamize your plot
+* shiny: creating dashboard with ui and server
+* DT: handling dataset visualization
+* ggExtra: add elements to your plots
+* conflicted: prevent errors when using functions with same name
+
