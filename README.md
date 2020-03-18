@@ -9,6 +9,7 @@ Links to the online tutorial that I took to learn R:
 * Creating Graph with ggplot2: https://www.r-graph-gallery.com/index.html
 * Shiny App Example and code: https://ibiostat.be/seminar/uploads/introdcution-r-shiny-package-20160330.pdf
 * Interactive Web applications with R, plotly and Shiny : https://plotly-r.com/index.html
+* Shiny tutorial: https://stat545.com/api-wrappers.html
 
 # Intermediate
 * Descriptive, Predictive and Prescriptive Analytics: https://afit-r.github.io/
