@@ -21,6 +21,7 @@ Links to the online tutorial that I took to learn R:
 # Advanced
 
 * The Elements of Statistical Learning : https://web.stanford.edu/~hastie/Papers/ESLII.pdf
+* Deep Learning : http://www.deeplearningbook.org/
 
 # Cheat sheets
  
