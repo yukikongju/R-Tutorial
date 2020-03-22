@@ -52,4 +52,4 @@ https://www.youtube.com/watch?v=0mvlZhYk44E&t=899s
 * ggExtra: add elements to your plots
 * conflicted: prevent errors when using functions with same name
 * stringr: manage your strings
-* RMarkdown:
+* Writing document with RMarkdown: https://rmarkdown.rstudio.com/gallery.html
