@@ -42,9 +42,10 @@ Links to the online tutorial that I took to learn R:
 
 * dplyr: data wrangling
 * ggplot2: data visualisation
-* rvest: data scrapping
+* Data scrapping with rvest: https://www.youtube.com/watch?v=4IYfYx4yoAI
+https://www.youtube.com/watch?v=0mvlZhYk44E&t=899s
 * plotly: dynamize your plot
-* shiny: creating dashboard with ui and server
+* Creating dashboard with a server and a Ui using shiny: https://shiny.rstudio.com/tutorial/
 * DT: handling dataset visualization
 * ggExtra: add elements to your plots
 * conflicted: prevent errors when using functions with same name
