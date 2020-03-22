@@ -42,6 +42,7 @@ Links to the online tutorial that I took to learn R:
 
 # Packages
 
+* All books link: https://bookdown.org/
 * dplyr: data wrangling
 * ggplot2: data visualisation: https://www.r-graph-gallery.com/index.html
 * Data scrapping with rvest: https://www.youtube.com/watch?v=4IYfYx4yoAI
