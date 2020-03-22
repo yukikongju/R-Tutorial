@@ -41,10 +41,10 @@ Links to the online tutorial that I took to learn R:
 # Packages
 
 * dplyr: data wrangling
-* ggplot2: data visualisation
+* ggplot2: data visualisation: https://www.r-graph-gallery.com/index.html
 * Data scrapping with rvest: https://www.youtube.com/watch?v=4IYfYx4yoAI
 https://www.youtube.com/watch?v=0mvlZhYk44E&t=899s
-* plotly: dynamize your plot
+* Dynamize your plot with plotly: https://plot.ly/chart-studio-help/tutorials/
 * Creating dashboard with a server and a Ui using shiny: https://shiny.rstudio.com/tutorial/
 * DT: handling dataset visualization
 * ggExtra: add elements to your plots
