@@ -3,6 +3,8 @@
 Links to the online tutorial that I took to learn R:
 
 # Beginner 
+
+* Understanding how R works: https://bookdown.org/csgillespie/efficientR/
 * R for Data Science: https://r4ds.had.co.nz/
 * Text Mining with R: https://www.tidytextmining.com/
 * Graphic Interfaces with Shiny: https://geoviz.sciencesconf.org/data/pages/GeoViz2018_R_shiny.pdf
@@ -50,3 +52,4 @@ https://www.youtube.com/watch?v=0mvlZhYk44E&t=899s
 * ggExtra: add elements to your plots
 * conflicted: prevent errors when using functions with same name
 * stringr: manage your strings
+* RMarkdown:
