@@ -42,6 +42,14 @@ Links to the online tutorial that I took to learn R:
 * Alternative Derivation of the Expaction Algorithm: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/spl_mesot_barber08.pdf
 * Switching linear gaussian state space models: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/skf_tr.pdf
 * Optimal Spike-Timing Dependent Plasticity In Superised Model: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/optimalSTDP.pdf
+* Neural Network : http://cs231n.github.io/neural-networks-3/#update
+* Convolutional Network: http://cs231n.github.io/
+* Generating Sequences With Recurrent Neural Networks by Alex Graves :https://arxiv.org/pdf/1308.0850v5.pdf
+
+* Practical Recommendations for Gradient-Based Training of Deep Architectures by Yoshua Bengio : https://arxiv.org/pdf/1206.5533v2.pdf
+* Efficient Backdrop by Yann LeCun : http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf
+* Stochastic Gradient Descent tricks by Leon Bottou : https://www.microsoft.com/en-us/research/wp-content/uploads/2012/01/tricks-2012.pdf
+
 
 # Cheat sheets
  
