@@ -4,7 +4,7 @@ Links to the online tutorial that I took to learn R:
 
 # Data Science Overview
 
-* Introduction to Machine Learning: https://github.com/DrMichaelWang/Machine-Learning-and-Data-Science/blob/master/Introduction%20to%20Machine%20Learning-%20The%20wikipedia%20guide.pdf
+* Introduction to Machine Learning by The Wikipedia Guide: https://github.com/DrMichaelWang/Machine-Learning-and-Data-Science/blob/master/Introduction%20to%20Machine%20Learning-%20The%20wikipedia%20guide.pdf
 
 # Beginner 
 
