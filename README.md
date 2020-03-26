@@ -29,6 +29,7 @@ Links to the online tutorial that I took to learn R:
 * The Elements of Statistical Learning : https://web.stanford.edu/~hastie/Papers/ESLII.pdf
 * Deep Learning : http://www.deeplearningbook.org/
 * Reinforcement Learning : http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
+* Handling Big Data with MapReduce : http://infolab.stanford.edu/~ullman/mmds/book.pdf
 
 # Cheat sheets
  
