@@ -23,6 +23,7 @@ Links to the online tutorial that I took to learn R:
 * Introduction to the science of statistics : https://www.math.arizona.edu/~jwatkins/statbook.pdf
 * Unsupervised Models: http://uc-r.github.io/
 * Advanced R: https://adv-r.hadley.nz/
+* Introdution to Time-Series Modelling: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/shortcourseTimeSeries.pdf
 
 # Advanced
 
@@ -33,6 +34,14 @@ Links to the online tutorial that I took to learn R:
 * Bayesian Reasoning: http://web4.cs.ucl.ac.uk/staff/D.Barber/textbook/270212.pdf
 
 * Overdispersed Variation Autoencoders: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/OVAE_final.pdf
+* Generating Sentences Using a Dynamic Canvas: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/Shah-Zheng.pdf
+* Neural Networl Analyses: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/barber-thesis.pdf
+* Variation OptimizationL http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/1212.4507.pdf
+* Bayesian Methods for Supervised Neural Networks:http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/db_hbtnn.pdf
+* AUtomatic Differenciation :http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/AMLAutoDiff.pdf
+* Alternative Derivation of the Expaction Algorithm: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/spl_mesot_barber08.pdf
+* Switching linear gaussian state space models: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/skf_tr.pdf
+* Optimal Spike-Timing Dependent Plasticity In Superised Model: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/optimalSTDP.pdf
 
 # Cheat sheets
  
