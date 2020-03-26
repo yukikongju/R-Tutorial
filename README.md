@@ -45,6 +45,8 @@ Links to the online tutorial that I took to learn R:
 * Neural Network : http://cs231n.github.io/neural-networks-3/#update
 * Convolutional Network: http://cs231n.github.io/
 * Generating Sequences With Recurrent Neural Networks by Alex Graves :https://arxiv.org/pdf/1308.0850v5.pdf
+* Instinct algorithm documentation : https://wagenaartje.github.io/neataptic/docs/
+* Instinct algorithm explained: https://towardsdatascience.com/neuro-evolution-on-steroids-82bd14ddc2f6
 
 * Practical Recommendations for Gradient-Based Training of Deep Architectures by Yoshua Bengio : https://arxiv.org/pdf/1206.5533v2.pdf
 * Efficient Backdrop by Yann LeCun : http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf
