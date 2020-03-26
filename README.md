@@ -30,6 +30,7 @@ Links to the online tutorial that I took to learn R:
 * Deep Learning : http://www.deeplearningbook.org/
 * Reinforcement Learning : http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 * Handling Big Data with MapReduce : http://infolab.stanford.edu/~ullman/mmds/book.pdf
+* Bayesian Reasoning: http://web4.cs.ucl.ac.uk/staff/D.Barber/textbook/090310.pdf
 
 # Cheat sheets
  
