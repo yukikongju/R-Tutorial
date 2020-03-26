@@ -32,6 +32,8 @@ Links to the online tutorial that I took to learn R:
 * Handling Big Data with MapReduce : http://infolab.stanford.edu/~ullman/mmds/book.pdf
 * Bayesian Reasoning: http://web4.cs.ucl.ac.uk/staff/D.Barber/textbook/270212.pdf
 
+* Overdispersed Variation Autoencoders: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/OVAE_final.pdf
+
 # Cheat sheets
  
 * Basic statistics : https://cbmm.mit.edu/sites/default/files/documents/probability_handout.pdf
