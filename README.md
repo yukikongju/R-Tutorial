@@ -18,6 +18,8 @@ Links to the online tutorial that I took to learn R:
 * Shiny tutorial: https://stat545.com/api-wrappers.html
 * Drawing Dimension reduction plot with autoplotly: http://rstudio-pubs-static.s3.amazonaws.com/53162_cd16ee63c24747459ccd180f69f07810.html
 * PCA with ggplot2: http://rstudio-pubs-static.s3.amazonaws.com/53162_cd16ee63c24747459ccd180f69f07810.html
+* Machine Learning by Stanford: http://www.holehouse.org/mlclass/index.html
+
 
 # Intermediate
 * Descriptive, Predictive and Prescriptive Analytics: https://afit-r.github.io/
