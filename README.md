@@ -16,6 +16,7 @@ Links to the online tutorial that I took to learn R:
 * Shiny App Example and code: https://ibiostat.be/seminar/uploads/introdcution-r-shiny-package-20160330.pdf
 * Interactive Web applications with R, plotly and Shiny : https://plotly-r.com/index.html
 * Shiny tutorial: https://stat545.com/api-wrappers.html
+* Drawing Dimension reduction plot with autoplotly: http://rstudio-pubs-static.s3.amazonaws.com/53162_cd16ee63c24747459ccd180f69f07810.html
 
 # Intermediate
 * Descriptive, Predictive and Prescriptive Analytics: https://afit-r.github.io/
