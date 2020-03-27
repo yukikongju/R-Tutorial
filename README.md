@@ -41,6 +41,7 @@ Links to the online tutorial that I took to learn R:
 * AUtomatic Differenciation :http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/AMLAutoDiff.pdf
 * Alternative Derivation of the Expaction Algorithm: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/spl_mesot_barber08.pdf
 * Switching linear gaussian state space models: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/skf_tr.pdf
+* Genetic ALgorithm : https://ibug.doc.ic.ac.uk/media/uploads/documents/courses/GeneticAlgorithm-tutorial.pdf
 * Optimal Spike-Timing Dependent Plasticity In Superised Model: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/optimalSTDP.pdf
 * Neural Network : http://cs231n.github.io/neural-networks-3/#update
 * Convolutional Network: http://cs231n.github.io/
