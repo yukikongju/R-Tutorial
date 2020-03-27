@@ -26,6 +26,7 @@ Links to the online tutorial that I took to learn R:
 * Unsupervised Models: http://uc-r.github.io/
 * Advanced R: https://adv-r.hadley.nz/
 * Introdution to Time-Series Modelling: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/shortcourseTimeSeries.pdf
+* Analyze models bias and variance: http://huboqiang.cn/2016/03/07/MLDiagnose
 
 # Advanced
 
