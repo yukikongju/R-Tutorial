@@ -74,6 +74,7 @@ Links to the online tutorial that I took to learn R:
 
 * The State of Sport Data Visualization: https://www.readkong.com/page/state-of-the-art-of-sports-data-visualization
 * Google Facets: https://pair-code.github.io/facets/
+* Google OpeanSource: https://opensource.google/projects/explore/analytics-visualization
 
 # Packages
 
@@ -89,3 +90,8 @@ https://www.youtube.com/watch?v=0mvlZhYk44E&t=899s
 * conflicted: prevent errors when using functions with same name
 * stringr: manage your strings
 * Writing document with RMarkdown: https://rmarkdown.rstudio.com/gallery.html
+
+# More
+
+* Google ML courses: https://ai.google/education/
+* Good practices: https://developers.google.com/machine-learning/guides
