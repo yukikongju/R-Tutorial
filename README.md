@@ -73,6 +73,7 @@ Links to the online tutorial that I took to learn R:
 # Study case
 
 * The State of Sport Data Visualization: https://www.readkong.com/page/state-of-the-art-of-sports-data-visualization
+* Google Facets: https://pair-code.github.io/facets/
 
 # Packages
 
