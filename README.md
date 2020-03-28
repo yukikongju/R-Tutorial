@@ -42,6 +42,7 @@ Links to the online tutorial that I took to learn R:
 * Artificial Intelligence Course by MIT: https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-034-artificial-intelligence-fall-2010/
 * Machine Learning by MIT:https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-867-machine-learning-fall-2006/index.htm
 * Algorithm by MIT: https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-notes/
+* Techinque in artificial intelligence by MIT: https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-825-techniques-in-artificial-intelligence-sma-5504-fall-2002/index.htm
 
 * Overdispersed Variation Autoencoders: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/OVAE_final.pdf
 * Generating Sentences Using a Dynamic Canvas: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/Shah-Zheng.pdf
