@@ -39,6 +39,10 @@ Links to the online tutorial that I took to learn R:
 * Handling Big Data with MapReduce : http://infolab.stanford.edu/~ullman/mmds/book.pdf
 * Bayesian Reasoning: http://web4.cs.ucl.ac.uk/staff/D.Barber/textbook/270212.pdf
 
+* Artificial Intelligence Course by MIT: https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-034-artificial-intelligence-fall-2010/
+* Machine Learning by MIT:https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-867-machine-learning-fall-2006/index.htm
+* Algorithm by MIT: https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-notes/
+
 * Overdispersed Variation Autoencoders: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/OVAE_final.pdf
 * Generating Sentences Using a Dynamic Canvas: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/Shah-Zheng.pdf
 * Neural Networl Analyses: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/barber-thesis.pdf
@@ -104,6 +108,7 @@ https://www.youtube.com/watch?v=0mvlZhYk44E&t=899s
 * Pair with Google: https://pair.withgoogle.com/
 * DevOps by google: https://cloud.google.com/devops
 
+
 # Blogs
 
 * The unofficial google data science blog: http://www.unofficialgoogledatascience.com/
@@ -111,3 +116,7 @@ https://www.youtube.com/watch?v=0mvlZhYk44E&t=899s
 # Tools
 
 * What-if by Google : https://pair-code.github.io/
+
+# Data Structures and Algorithms
+
+* Algorithms by Jeff Erickson: http://jeffe.cs.illinois.edu/teaching/algorithms/book/Algorithms-JeffE.pdf
