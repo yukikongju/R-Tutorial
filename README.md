@@ -75,6 +75,10 @@ Links to the online tutorial that I took to learn R:
 * The State of Sport Data Visualization: https://www.readkong.com/page/state-of-the-art-of-sports-data-visualization
 * Google Facets: https://pair-code.github.io/facets/
 * Google OpeanSource: https://opensource.google/projects/explore/analytics-visualization
+* Responsible Practices by google : https://ai.google/responsibilities/responsible-ai-practices/?category=fairness
+* Fairness: https://design.google/library/ai/
+* Google Design :https://design.google/resources/
+* Pairs research: https://pair.withgoogle.com/research/
 
 # Packages
 
@@ -95,3 +99,15 @@ https://www.youtube.com/watch?v=0mvlZhYk44E&t=899s
 
 * Google ML courses: https://ai.google/education/
 * Good practices: https://developers.google.com/machine-learning/guides
+* ML crash course by google: https://developers.google.com/machine-learning/crash-course/ml-intro
+* kaggle course: https://www.kaggle.com/learn/overview?utm_medium=partner&utm_source=google.com&utm_campaign=google+ai+hub
+* Pair with Google: https://pair.withgoogle.com/
+* DevOps by google: https://cloud.google.com/devops
+
+# Blogs
+
+* The unofficial google data science blog: http://www.unofficialgoogledatascience.com/
+
+# Tools
+
+* What-if by Google : https://pair-code.github.io/
