@@ -87,7 +87,7 @@ flights %>% select(year:day,
 #flights %>% transmute(dep_time_pct=dep_time/sum(dep_time) )
 
 # calculate difference from mean : y- mean(y)
-#flights %>% transmute(dep_delay_residual= dep_delay-mean(dep_delay))
+#flights %>% mutate(dep_delay_residual= dep_delay-mean(dep_delay)) %>% head() %>% view()
 
 # modulo for division: %/% , for addition : %%
 flights %>% transmute(dep_time, hour = dep_time %/% 100, minute = dep_time %%
