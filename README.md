@@ -30,6 +30,7 @@ Links to the online tutorial that I took to learn R:
 * Advanced R: https://adv-r.hadley.nz/
 * Introdution to Time-Series Modelling: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/shortcourseTimeSeries.pdf
 * Analyze models bias and variance: http://huboqiang.cn/2016/03/07/MLDiagnose
+* R exercices: https://advanced-r-solutions.rbind.io/
 
 # Advanced
 
@@ -99,6 +100,7 @@ https://www.youtube.com/watch?v=0mvlZhYk44E&t=899s
 * conflicted: prevent errors when using functions with same name
 * stringr: manage your strings
 * Writing document with RMarkdown: https://rmarkdown.rstudio.com/gallery.html
+* reshape2: https://seananderson.ca/2013/10/19/reshape/
 
 # More
 
