@@ -20,7 +20,7 @@ Links to the online tutorial that I took to learn R:
 * Drawing Dimension reduction plot with autoplotly: http://rstudio-pubs-static.s3.amazonaws.com/53162_cd16ee63c24747459ccd180f69f07810.html
 * PCA with ggplot2: http://rstudio-pubs-static.s3.amazonaws.com/53162_cd16ee63c24747459ccd180f69f07810.html
 * Machine Learning by Stanford: http://www.holehouse.org/mlclass/index.html
-
+* geocomputation with R: https://geocompr.robinlovelace.net/
 
 # Intermediate
 * Descriptive, Predictive and Prescriptive Analytics: https://afit-r.github.io/
@@ -101,6 +101,7 @@ https://www.youtube.com/watch?v=0mvlZhYk44E&t=899s
 * stringr: manage your strings
 * Writing document with RMarkdown: https://rmarkdown.rstudio.com/gallery.html
 * reshape2: https://seananderson.ca/2013/10/19/reshape/
+
 
 # More
 
