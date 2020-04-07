@@ -8,6 +8,8 @@ Links to the online tutorial that I took to learn R:
 
 # Beginner 
 
+* R Programming for DS by Roger Peng: https://bookdown.org/rdpeng/rprogdatascience/
+* Text Mining with R by Julia Silge:https://www.tidytextmining.com/
 * Understanding how R works: https://bookdown.org/csgillespie/efficientR/
 * R for Data Science: https://r4ds.had.co.nz/
 * Text Mining with R: https://www.tidytextmining.com/
