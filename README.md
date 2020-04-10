@@ -27,6 +27,7 @@ Links to the online tutorial that I took to learn R:
 # Intermediate
 * Descriptive, Predictive and Prescriptive Analytics: https://afit-r.github.io/
 * Statistical computing with R: http://www.css.cornell.edu/faculty/dgr2/teach/R/R_corregr.pdf 
+* Forecasting principles and concepts by George Athanasopoulos: https://otexts.com/fpp2/
 * Introduction to the science of statistics : https://www.math.arizona.edu/~jwatkins/statbook.pdf
 * Unsupervised Models: http://uc-r.github.io/
 * Advanced R: https://adv-r.hadley.nz/
