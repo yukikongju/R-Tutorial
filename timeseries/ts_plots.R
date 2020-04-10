@@ -56,15 +56,83 @@ gglagplot(d_beer)
 
 # ------------ autocorrelation plot ---------------
 
+ggAcf(d_beer, lag.max = 40)
 
+# ---------- Trend and seasonality in ACF plots ---
 
+d_elec <- window(elec, start = 1975)
+autoplot(d_elec) + xlab("Year") + ylab("Demand")
 
+# ----------- white noise plot -----------------
 
+set.seed(420)
+y <- ts(rnorm(50))
+autoplot(y) + ggtitle("white noise")
 
+# ----------- Exercices 1 -------------------------
 
+autoplot(gold)
+autoplot(woolyrnq)
+autoplot(gas)
 
+frequency(gold)
+frequency(woolyrnq)
+frequency(gas)
 
+# find outliers
+which.max(gold)
 
+# ----------- Exercice 4 --------------------
 
+autoplot(bicoal)
+autoplot(chicken)
+autoplot(usdeaths)
+autoplot(goog) + ggtitle("Google stock price ")
 
+# ----------- Exercice 5 --------------------
 
+ggseasonplot(writing)
+ggsubseriesplot(writing)
+
+ggseasonplot(fancy)
+ggsubseriesplot(fancy)
+
+# ----------- Exercice 6 --------------------
+
+autoplot(hsales)
+ggseasonplot(hsales)
+ggsubseriesplot(hsales)
+gglagplot(hsales)
+ggAcf(hsales)
+
+# ----------- Exercice 7 --------------------
+
+autoplot(arrivals, facets = TRUE)
+
+ggseasonplot(arrivals[, "Japan"])
+ggseasonplot(arrivals[, "NZ"])
+ggseasonplot(arrivals[, "UK"])
+ggseasonplot(arrivals[, "US"])
+
+ggsubseriesplot(arrivals[, "Japan"])
+ggsubseriesplot(arrivals[, "NZ"])
+ggsubseriesplot(arrivals[, "UK"])
+ggsubseriesplot(arrivals[, "US"])
+
+# ----------- Exercice 9 --------------------
+
+d_pigs <- window(pigs, start=1990)
+
+autoplot(d_pigs)
+ggseasonplot(d_pigs)
+ggsubseriesplot(d_pigs)
+gglagplot(d_pigs)
+ggAcf(d_pigs)
+
+# ---------- Exercice 10 ---------------
+
+djj <- diff(dj)
+autoplot(djj)
+ggAcf(djj)
+
+# Note: probably white noise
