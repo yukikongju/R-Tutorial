@@ -34,7 +34,7 @@ Links to the online tutorial that I took to learn R:
 * Introdution to Time-Series Modelling: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/shortcourseTimeSeries.pdf
 * Analyze models bias and variance: http://huboqiang.cn/2016/03/07/MLDiagnose
 * R exercices: https://advanced-r-solutions.rbind.io/
-
+* Time series with R: otext.com
 # Advanced
 
 * The Elements of Statistical Learning : https://web.stanford.edu/~hastie/Papers/ESLII.pdf
