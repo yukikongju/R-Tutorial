@@ -1,0 +1,119 @@
+---
+title: "Topic Analysis with Gutenbergr"
+author: "YukiKongJu"
+date: "24/04/2020"
+output: html_document
+---
+
+## Importing libraries
+
+```{r setup, include=FALSE}
+
+# https://www.youtube.com/watch?v=evTuL-RcRpc&t=1303s
+
+library(dplyr)
+library(gutenbergr)
+library(tidyr)
+library(stringr)
+library(tidytext)
+library(ggplot2)
+
+```
+
+## Load Data
+
+```{r}
+
+sherlock_raw <- gutenberg_download(1661)
+sherlock_raw %>% head()
+
+```
+
+# Data Preparation
+
+```{r cars, echo= FALSE}
+
+# add story column
+sherlock_raw <- sherlock_raw %>% 
+  mutate(story = ifelse(str_detect(text, "ADVENTURE"), text, NA)) %>% 
+  fill(story) %>% 
+  filter(story != "THE ADVENTURE OF SHERLOCK HOLMES") %>% 
+  mutate(story = factor(story))
+
+sherlock_raw %>% count(story)
+
+# count word by line and remove stop words
+tidy_sherlock <- sherlock_raw %>% 
+  mutate(line = row_number()) %>% 
+  unnest_tokens(word, text) %>% 
+  anti_join(stop_words) %>% 
+  filter(word != "holmes")
+
+tidy_sherlock %>% 
+  count(word, sort = TRUE)
+
+```
+
+## Data Exploration
+
+```{r pressure, echo=FALSE}
+
+# how important is the word 
+tidy_sherlock %>% 
+  count(story, word, sort = TRUE) %>% 
+  bind_tf_idf(word, story, n) %>% 
+  group_by(story) %>% 
+  top_n(10) %>% 
+  ungroup() %>% 
+  mutate(word=reorder(word, tf_idf)) %>% 
+  ggplot(aes(word, story, fill=story)) +
+  geom_col(show.legend = FALSE)+
+  facet_wrap(~story, scales = "free")+
+  coord_flip()
+
+```
+
+## Implement Topic Modelling
+
+```{r}
+
+library(stm)
+library(quanteda)
+
+sherlock_dfm <- tidy_sherlock %>% 
+  count(story, word, sort = TRUE) %>% 
+  cast_dfm(story, word, n)
+
+topic_model <- stm(sherlock_dfm, K=6, init.type="Spectral")
+summary(topic_model)
+
+```
+
+```{r}
+
+td_beta <- tidy(topic_model)
+
+td_beta %>% 
+  group_by(topic) %>% 
+  top_n(10) %>% 
+  ungroup() %>% 
+  mutate(term=reorder(term, beta)) %>% 
+  ggplot(aes(topic, beta, fill=topic)) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~topic, scales = "free") +
+  coord_flip()
+
+td_gamma <- tidy(topic_model, 
+                 matrix = "gamma",
+                 document_names = rownames(sherlock_dfm))
+
+# probability that a story belongs in a topic
+
+td_gamma %>% 
+  ggplot(aes(gamma, fill= as.factor(topic))) +
+  geom_histogram(show.legend = FALSE) +
+  facet_wrap(~topic, ncol = 3)
+
+
+```
+
