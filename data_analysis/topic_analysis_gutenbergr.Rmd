@@ -9,6 +9,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 
+# https://www.youtube.com/watch?v=evTuL-RcRpc&t=1303s
+
 library(dplyr)
 library(gutenbergr)
 library(tidyr)
