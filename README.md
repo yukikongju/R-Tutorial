@@ -24,7 +24,8 @@ Links to the online tutorial that I took to learn R:
 * Machine Learning by Stanford: http://www.holehouse.org/mlclass/index.html
 * geocomputation with R: https://geocompr.robinlovelace.net/
 * Fundamentals of Data Visualization: https://serialmentor.com/dataviz/index.html
-* Data visualization : https://rkabacoff.github.io/datavis/
+* Data visualization by Rob Kabacoff : https://rkabacoff.github.io/datavis/
+* Data visualization by Claudia Engel: https://cengel.github.io/R-data-viz/
 
 # Intermediate
 * Descriptive, Predictive and Prescriptive Analytics: https://afit-r.github.io/
@@ -36,7 +37,9 @@ Links to the online tutorial that I took to learn R:
 * Introdution to Time-Series Modelling: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/shortcourseTimeSeries.pdf
 * Analyze models bias and variance: http://huboqiang.cn/2016/03/07/MLDiagnose
 * R exercices: https://advanced-r-solutions.rbind.io/
-* Time series with R: otext.com
+* Time series with R: https://otexts.com/fpp2/
+* r-statistics.co: http://r-statistics.co/
+
 # Advanced
 
 * The Elements of Statistical Learning : https://web.stanford.edu/~hastie/Papers/ESLII.pdf
