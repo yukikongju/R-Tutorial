@@ -26,6 +26,8 @@ Links to the online tutorial that I took to learn R:
 * Fundamentals of Data Visualization: https://serialmentor.com/dataviz/index.html
 * Data visualization by Rob Kabacoff : https://rkabacoff.github.io/datavis/
 * Data visualization by Claudia Engel: https://cengel.github.io/R-data-viz/
+* Data visualization Workshop: http://stulp.gmw.rug.nl/ggplotworkshop/
+* GGally: https://ggobi.github.io/ggally/#ggally
 
 # Intermediate
 * Descriptive, Predictive and Prescriptive Analytics: https://afit-r.github.io/
