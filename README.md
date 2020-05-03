@@ -110,9 +110,14 @@ https://www.youtube.com/watch?v=0mvlZhYk44E&t=899s
 * ggExtra: add elements to your plots
 * conflicted: prevent errors when using functions with same name
 * stringr: manage your strings
+* GGally: ggpairs()
+* forecats:
+* ggthemes:
+* ggAnimate:
 * Writing document with RMarkdown: https://rmarkdown.rstudio.com/gallery.html
 * reshape2: https://seananderson.ca/2013/10/19/reshape/
-
+* timeline with vistime: https://cran.r-project.org/web/packages/vistime/vignettes/vistime-vignette.html
+* timeline with lares: https://towardsdatascience.com/how-to-create-a-timeline-of-your-cv-in-r-2528abaeb8db
 
 # More
 
