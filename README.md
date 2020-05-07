@@ -49,6 +49,8 @@ Links to the online tutorial that I took to learn R:
 * Reinforcement Learning : http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
 * Handling Big Data with MapReduce : http://infolab.stanford.edu/~ullman/mmds/book.pdf
 * Bayesian Reasoning: http://web4.cs.ucl.ac.uk/staff/D.Barber/textbook/270212.pdf
+* Neural Network: http://neuralnetworksanddeeplearning.com/
+* Statistical Modeling: https://dtkaplan.github.io/SM2-bookdown/
 
 * Artificial Intelligence Course by MIT: https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-034-artificial-intelligence-fall-2010/
 * Machine Learning by MIT:https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-867-machine-learning-fall-2006/index.htm
