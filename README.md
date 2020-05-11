@@ -29,6 +29,7 @@ Links to the online tutorial that I took to learn R:
 * Data visualization Workshop: http://stulp.gmw.rug.nl/ggplotworkshop/
 * GGally: https://ggobi.github.io/ggally/#ggally
 * Statistical inference and hypothesis testing: https://moderndive.com/index.html
+* Geographic Data Course: https://pjbartlein.github.io/GeogDataAnalysis/index.html
 
 # Intermediate
 * Descriptive, Predictive and Prescriptive Analytics: https://afit-r.github.io/
