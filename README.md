@@ -28,6 +28,7 @@ Links to the online tutorial that I took to learn R:
 * Data visualization by Claudia Engel: https://cengel.github.io/R-data-viz/
 * Data visualization Workshop: http://stulp.gmw.rug.nl/ggplotworkshop/
 * GGally: https://ggobi.github.io/ggally/#ggally
+* Statistical inference and hypothesis testing: https://moderndive.com/index.html
 
 # Intermediate
 * Descriptive, Predictive and Prescriptive Analytics: https://afit-r.github.io/
