@@ -46,6 +46,7 @@ Links to the online tutorial that I took to learn R:
 
 # Advanced
 
+* Stanford Courses: https://see.stanford.edu/Course
 * The Elements of Statistical Learning : https://web.stanford.edu/~hastie/Papers/ESLII.pdf
 * Deep Learning : http://www.deeplearningbook.org/
 * Reinforcement Learning : http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
@@ -136,6 +137,7 @@ https://www.youtube.com/watch?v=0mvlZhYk44E&t=899s
 # Blogs
 
 * The unofficial google data science blog: http://www.unofficialgoogledatascience.com/
+* Open Source Data Science : https://github.com/datasciencemasters/go#python-libraries
 
 # Tools
 
