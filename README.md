@@ -30,6 +30,7 @@ Links to the online tutorial that I took to learn R:
 * GGally: https://ggobi.github.io/ggally/#ggally
 * Statistical inference and hypothesis testing: https://moderndive.com/index.html
 * Geographic Data Course: https://pjbartlein.github.io/GeogDataAnalysis/index.html
+* Data Science at the Command Line by Jeroen Janssens: https://www.datascienceatthecommandline.com/
 
 # Intermediate
 * Descriptive, Predictive and Prescriptive Analytics: https://afit-r.github.io/
