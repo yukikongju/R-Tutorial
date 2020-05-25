@@ -38,7 +38,8 @@ Links to the online tutorial that I took to learn R:
 * Forecasting principles and concepts by George Athanasopoulos: https://otexts.com/fpp2/
 * Introduction to the science of statistics : https://www.math.arizona.edu/~jwatkins/statbook.pdf
 * Unsupervised Models: http://uc-r.github.io/
-* Advanced R: https://adv-r.hadley.nz/
+* Advanced R by Hadley Wickham: https://adv-r.hadley.nz/
+* Exploratory Data Analysis by Roger Peng: https://bookdown.org/rdpeng/exdata/
 * Introdution to Time-Series Modelling: http://web4.cs.ucl.ac.uk/staff/D.Barber/publications/shortcourseTimeSeries.pdf
 * Analyze models bias and variance: http://huboqiang.cn/2016/03/07/MLDiagnose
 * R exercices: https://advanced-r-solutions.rbind.io/
