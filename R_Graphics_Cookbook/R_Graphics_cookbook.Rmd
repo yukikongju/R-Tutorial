@@ -1,0 +1,492 @@
+---
+title: "R Graphics Cookbook"
+output: html_notebook
+---
+
+### Chap 1: R Basics
+
+```{r}
+library(ggplot2)
+library(gcookbook)
+```
+
+### Chap 2: Quickly Exploring Data
+
+##### Scatterplot
+
+```{r}
+# plot(mtcars$wt, mtcars$mpg)
+
+ggplot(mtcars, aes(wt, mpg)) + geom_point()
+```
+
+##### Line graph
+
+```{r}
+plot(pressure$temperature, pressure$pressure, type ='l')
+points(pressure$temperature, pressure$pressure)
+```
+
+```{r}
+ggplot(pressure, aes(temperature, pressure)) + geom_line()+
+  geom_point()
+```
+
+##### Bar Graph
+
+```{r}
+barplot(BOD$demand, names.arg = BOD$Time)
+```
+
+```{r}
+barplot(table(mtcars$cyl))
+```
+
+```{r}
+qplot(factor(mtcars$cyl))
+```
+
+```{r}
+ggplot(mtcars, aes(factor(cyl))) + geom_bar()
+```
+
+```{r}
+ggplot(BOD, aes(Time, demand)) + geom_bar(stat = 'identity')
+```
+
+##### Histogram
+
+```{r}
+hist(mtcars$mpg)
+```
+
+```{r}
+ggplot(mtcars, aes(mpg)) + geom_histogram(binwidth = 5)
+```
+
+##### Boxplots
+
+```{r}
+# boxplot(ToothGrowth$supp, ToothGrowth$len)
+boxplot(len ~ supp, data = ToothGrowth)
+```
+
+```{r}
+ggplot(ToothGrowth, aes(supp, len)) + geom_boxplot()
+```
+
+##### Plot Function Curve
+
+```{r}
+curve(x^3-5*x, from = -4, to=4)
+equation <- function(x){
+  1/(1 + exp(-x + 10))
+}
+curve(equation(x), from = 0, to = 20)
+curve(equation(x), add = TRUE, col = 'red')
+
+```
+
+```{r}
+ggplot(data.frame(x=c(0,20)), aes(x)) + 
+  stat_function(fun = equation, geom = 'line')
+```
+
+### Chap 3: Bar Graphs
+
+##### Basic Bar Graphs
+
+```{r}
+library(gcookbook)
+
+# str(pg_mean)
+
+ggplot(pg_mean, aes(group, weight)) + geom_bar(stat = 'identity', fill = 'lightblue', color = 'black')
+```
+
+##### Stacking Bars Together
+
+```{r}
+library(gcookbook)
+
+ggplot(cabbage_exp, aes(x = Date, y = Weight, fill = Cultivar)) + 
+  geom_bar(stat = 'identity')
+
+```
+
+##### Grouping Bars together
+
+```{r}
+library(gcookbook)
+
+ggplot(cabbage_exp, aes(x = Date, y = Weight, fill = Cultivar)) + 
+  geom_bar(stat = 'identity', position = 'dodge', color = 'black') +
+  scale_fill_brewer(palette = 'Pastel1')
+
+```
+
+##### Bar Graph of Counts
+
+```{r}
+ggplot(diamonds, aes(cut)) + geom_bar(stat = 'count')
+```
+
+
+##### Colors in Bar Graph
+
+```{r}
+library(gcookbook)
+library(dplyr)
+upc <- uspopchange %>% 
+  mutate(Change = rank(Change)) %>% 
+  filter(Change>40)
+
+ggplot(upc, aes(x = reorder(Abb, Change), y= Change, fill = Region)) + geom_bar(stat = 'identity', color = 'black') +
+  scale_fill_manual(values = c("#669933", "#FFCC66"))+
+  xlab('State')
+  
+
+```
+
+
+##### 3.5. Colors Negative and Positive Bars
+
+```{r}
+
+library(gcookbook)
+library(dplyr)
+clim_sub <- climate %>% 
+  filter(Source == 'Berkeley', Year >= 1900) %>% 
+  mutate(pos = Anomaly10y>=0)
+
+ggplot(clim_sub, aes(Year, Anomaly10y, fill = pos)) + 
+  geom_bar(stat = 'identity', position = 'identity', color='black', size =0.25)+
+  scale_fill_manual(values = c("#CCEEFF", "#FFDDDD"), guide = FALSE)
+
+```
+
+##### 3.6. Adjusting Bar Width and Spacing
+
+```{r}
+library(gcookbook)
+ggplot(pg_mean, aes(group, weight)) + geom_bar(stat = 'identity', width = 0.8) 
+
+```
+
+##### 3.7. Making a Stacked Bar Graph
+
+```{r}
+library(gcookbook)
+
+ggplot(cabbage_exp, aes(Date, Weight, fill = Cultivar)) +
+  geom_bar(stat = 'identity') + 
+  guides(fill = guide_legend(reverse = TRUE))
+```
+
+
+##### 3.8. Making a Proportional Stacked Bar Graph
+
+```{r}
+library(gcookbook) # For the data set
+library(dplyr)
+library(plyr)
+
+# cabbage_perc <- cabbage_exp %>% 
+#   group_by(Cultivar, Date) %>% 
+#   mutate(percent_weight = Weight/sum(Weight) * 100)
+
+cabbage_perc <- ddply(cabbage_exp, 'Date', transform, 
+          percent_weight = Weight/sum(Weight) * 100) 
+
+ggplot(cabbage_perc, aes(Date, percent_weight, fill = Cultivar)) + geom_bar(stat = 'identity', color = 'black')+ 
+  scale_fill_brewer(palette = 'Pastel1')
+
+```
+
+##### 3.9. Adding Labels to a Bar Graph (see again)
+
+```{r}
+library(gcookbook)
+
+ggplot(cabbage_exp, aes(interaction(Date, Cultivar), y = Weight)) +
+  geom_bar(stat = 'identity') + 
+  geom_text(aes(label = Weight), vjust =1.5, color ='white')
+
+# vjust = -0.2 : text above
+```
+
+
+```{r}
+ggplot(cabbage_exp, aes(x = Date, y = Weight, fill = Cultivar)) + geom_bar(stat = 'identity', position = 'dodge') + geom_text(aes(label = Weight), vjust =1.5, color ='white', position = position_dodge(.9)) 
+```
+
+
+```{r}
+
+# get cummulative sum
+cabbage_perc <- ddply(cabbage_perc, 'Date', transform, label_y = cumsum(Weight))
+
+ggplot(cabbage_perc, aes(Date, Weight, fill = Cultivar)) + 
+  geom_bar(stat = 'identity') +
+  geom_text(aes(y = label_y, label = Weight), vjust = 1.5, color = 'white')
+```
+
+
+##### 3.10. Making a Cleveland Dot Plot
+
+```{r}
+library(gcookbook)
+tophit_25 <- tophitters2001 %>% 
+  select(name, lg, avg) %>% 
+  head(20)
+
+ggplot(tophit_25, aes(avg, reorder(name, avg))) +
+  geom_point(size = 3) + 
+  theme_bw()+
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.major.y = element_line(color = 'grey60', linetype = 'dashed')) 
+
+```
+
+
+```{r}
+nameorder <- tophit_25$name[order(tophit_25$lg, tophit_25$avg)]
+tophit_25$name <- factor(tophit_25$name, levels=nameorder)
+
+ggplot(tophit_25, aes(avg, name)) + 
+  geom_segment(aes(yend = name), xend = 0 , color = 'grey50')+
+  geom_point(size = 3, aes(color = lg)) + 
+  scale_color_brewer(palette = 'Set1', limits = c('NL', 'AL'), guide = FALSE)+
+  theme_bw()+
+  theme(panel.grid.major.y = element_blank())+
+  facet_grid(lg ~ ., scales = 'free_y' , space = 'free_y')
+```
+
+### CHap 4: Line Graphs
+
+##### 4.1. Making a Basic Line Graph
+
+```{r}
+ggplot(BOD, aes(Time, demand)) + geom_line()
+```
+
+##### 4.2. Adding Points to a Line Graph 
+
+```{r}
+ggplot(BOD, aes(Time, demand)) + geom_line() + geom_point()
+```
+
+##### 4.3. Making a Line Graph with Multiple Lines
+
+```{r}
+# ddply: apply function to column in df
+library(plyr)
+
+tooth <- ddply(ToothGrowth, c('supp', 'dose'), summarise, length = mean(len))
+
+ggplot(tooth, aes(x = dose, y= length, fill = supp))+ geom_line() + geom_point(size = 4, shape = 21)
+
+# we can replace fill by color or linetype instead
+
+```
+
+##### 4.4. Changing the Appearance of Lines
+
+```{r}
+ggplot(BOD, aes(Time, demand)) + 
+  geom_line(linetype = 'dashed', size = 1, color = 'blue')
+```
+
+```{r}
+library(plyr)
+
+tooth <- ddply(ToothGrowth, c('supp', 'dose'), summarise, length = mean(len))
+
+ggplot(tooth, aes(dose, length, color = supp)) + 
+  geom_line(linetype = 'dashed')+
+  geom_point(size =3, shape =22, fill = 'white')+
+  scale_color_brewer(palette = 'Set1')
+```
+
+##### 4.6. Making a Graph with a Shaded Area
+
+```{r}
+sunspotyear <- data.frame(
+  Year = as.numeric(time(sunspot.year)),
+  Sunspot = as.numeric(sunspot.year)
+)
+
+ggplot(sunspotyear, aes(Year, Sunspot)) + 
+  geom_area(color = 'black', fill = 'green', alpha = 0.6)
+```
+
+##### 4.7. Making a Stacked Area Graph
+
+```{r}
+library(gcookbook)
+
+ggplot(uspopage, aes(Year, Thousands, fill = AgeGroup))+ 
+  geom_area(color = 'black', alpha = 0.4, size = 0.2)+
+  scale_fill_brewer(palette = 'Blues', breaks = rev(levels(uspopage$AgeGroup)))
+```
+
+##### 4.8. Making a Proportional Stacked Area Graph
+
+```{r}
+library(gcookbook)
+library(plyr)
+
+uspoppage_perc <- uspopage %>% 
+  group_by(Year) %>% 
+  mutate(Percent = (Thousands/sum(Thousands)*100))
+
+uspopage_prop <- ddply(uspopage, "Year", transform,
+ Percent = Thousands / sum(Thousands) * 100)
+
+
+ggplot(uspopage_prop, aes(Year, Percent, fill = AgeGroup))+ 
+  geom_area(color = 'black', alpha = 0.4)+
+  scale_fill_brewer(palette = 'Blues')
+
+```
+
+##### 4.9. Adding a Confidence Region
+
+```{r}
+library(gcookbook) 
+library(dplyr)
+
+clim_sub <- climate %>% 
+  filter(Source == 'Berkeley') %>% 
+  select(Year, Anomaly10y, Unc10y)
+
+ggplot(clim_sub, aes(Year, Anomaly10y)) + 
+  geom_ribbon(aes(ymin = Anomaly10y-Unc10y, ymax=Anomaly10y+Unc10y), alpha = 0.15)+
+  geom_line()
+  
+# write geom_ribbon first so that it is below the line
+```
+
+```{r}
+ggplot(clim_sub, aes(Year, Anomaly10y)) + 
+  geom_line(aes(y = Anomaly10y-Unc10y), color = 'grey50', linetype = 'dashed') +
+  geom_line(aes(y=Anomaly10y+Unc10y), color = 'grey50', linetype = 'dashed')+
+  geom_line()
+```
+
+### CHAPTER 5: Scatter Plots
+
+##### 5.1. Making a Basic Scatter Plot
+
+```{r}
+ggplot(heightweight, aes(ageYear, heightIn)) + 
+  geom_point(size = 4, shape = 21)
+```
+
+
+##### 5.2. Grouping Data Points by a Variable Using Shape or Color
+
+```{r}
+ggplot(heightweight, aes(ageYear, heightIn, color = sex, shape = sex)) + 
+  geom_point()+
+  scale_shape_manual(values = c(1,2))+
+  scale_color_brewer(palette = 'Set1')
+
+```
+
+
+##### 5.3. Using Different Point Shapes
+
+##### 5.4. Mapping a Continuous Variable to Color or Size
+
+```{r}
+ggplot(heightweight, aes(weightLb, heightIn, fill = ageYear)) +
+  geom_point(shape = 21, size = 2.5)+
+  scale_fill_gradient(low = 'black', high = 'white', breaks=12:17, guide=guide_legend())
+```
+
+```{r}
+ggplot(heightweight, aes(ageYear, heightIn, color = sex, size = weightLb))+
+  geom_point(alpha= 0.4)+
+  scale_size_area()
+```
+
+##### 5.5. Dealing with Overplotting
+
+```{r}
+ggplot(diamonds, aes(carat, price))+
+  stat_bin2d(bins = 50) + 
+  scale_fill_gradient(low = 'lightblue' , high = 'red', limits = c(0,60000))
+
+# note: we can import the library(hexbin) instead and use hexbin instead
+```
+
+```{r}
+ggplot(diamonds, aes(carat, price))+
+  geom_jitter(alpha = 0.01)
+```
+
+
+##### 5.6. Adding Fitted Regression Model Lines
+
+```{r}
+ggplot(heightweight, aes(ageYear, heightIn)) + 
+  geom_point(color = 'grey50')+
+  geom_smooth(method = 'lm', se = FALSE, color = 'red')
+
+# note: we can replace 'lm' by 'loess', which is a weighted polynomial function
+```
+
+```{r}
+ggplot(heightweight, aes(ageYear, heightIn, color = sex)) + 
+  geom_point()+
+  geom_smooth(method = 'lm', se = FALSE)
+```
+
+##### 5.7. Adding Fitted Lines from an Existing Model [to do]
+
+```{r}
+
+model <- lm(heightIn ~ . , heightweight)
+model
+
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+
+##### 5.9. Adding Annotations with Model Coefficients
+
+
+##### 5.10. Adding Marginal Rugs to a Scatter Plot
+
+
+##### 5.11. Labeling Points in a Scatter Plot
+
+
+##### 5.12. Creating a Balloon Plot
+
+##### 5.13. Making a Scatter Plot Matrix
+
+
+### Chap 6: Summarized Data Distributions
+
+
+#####
+#####
+#####
+#####
+#####
+#####
+
+
+
+
