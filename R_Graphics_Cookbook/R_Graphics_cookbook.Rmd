@@ -448,44 +448,774 @@ ggplot(heightweight, aes(ageYear, heightIn, color = sex)) +
 
 ```{r}
 
-model <- lm(heightIn ~ . , heightweight)
-model
+model <- lm(heightIn ~ ageYear , heightweight)
+xmin <- min(heightweight$ageYear)
+xmax <- max(heightweight$ageYear)
+predicted <- data.frame(ageYear = seq(xmin,xmax, length.out = 100))
+
+predicted$heightIn <- predict(model, predicted)
+
+ggplot(heightweight, aes(ageYear, heightIn))+ 
+  geom_point(color = 'grey50')+
+  geom_line(data = predicted, size = 1, color ='red')
 
 
 ```
 
 ```{r}
+library(MASS)
+
+bio <- biopsy %>% 
+  mutate(class = if_else(class == 'benign', 0,1))
+
+fitlogistic <- glm(class ~ V1, bio, family = 'binomial')
+
+predictvals <- function(model, xvar, yvar, xrange = NULL, samples = 100 , ...){
+  if(is.null(xrange)){
+    if(any(class(model) %in% c('lm', 'glm')))
+      xrange <- range(model$model[[xvar]])
+    else if (any(class(model) %in% 'loess'))
+      xrange <- range(model$x)
+  }
+  
+ newdata <- data.frame(x = seq(xrange[1], xrange[2], length.out = samples))
+ names(newdata) <- xvar
+ newdata[[yvar]] <- predict(model, newdata = newdata, ...)
+ newdata
+}
+
+glm_predicted <- predictvals(fitlogistic, 'V1', 'class', type = 'response')
+
+ggplot(bio, aes(V1, class, fill = class))+
+  geom_jitter(alpha = 0.4, size = 2, shape = 21)+
+  geom_line(data = glm_predicted, size = 1)
 
 ```
 
+
+##### 5.8. Adding Fitted Lines from Multiple Existing Models
+
 ```{r}
+library(plyr)
+library(gcookbook)
+
+make_model <- function(data){
+  lm(heightIn ~ ageYear , data)
+}
+
+# subset data by sex and calculate its regression
+models <- dlply(.data = heightweight, .variables =  'sex', .fun = make_model)
+
+pred_vals <- ldply(models, .fun = , predictvals, xvar="ageYear", yvar="heightIn")
+
+ggplot(heightweight, aes(ageYear, heightIn, color = sex)) +
+  geom_point()+
+  geom_smooth(method = 'lm')+
+  geom_line(data = pred_vals, color = 'black')
 
 ```
 
 
 ##### 5.9. Adding Annotations with Model Coefficients
 
+```{r}
+ggplot(heightweight, aes(ageYear, heightIn, color = sex)) +
+  geom_point()+
+  geom_smooth(method = 'lm')+
+  geom_line(data = pred_vals, color = 'black')+
+  annotate('text', label = 'r^2==0.42', x=16.5, y=52, parse=TRUE)
+
+# note: parse=TRUE makes string read as maths formula
+```
 
 ##### 5.10. Adding Marginal Rugs to a Scatter Plot
 
+```{r}
+
+ggplot(faithful, aes(eruptions, waiting))+
+  geom_point()+
+  geom_rug(position = 'jitter', size = 0.2)
+
+```
 
 ##### 5.11. Labeling Points in a Scatter Plot
+
+```{r}
+
+library(dplyr)
+
+countries_sub <- countries %>% 
+  filter(Year == 2009, healthexp >= 2000)
+
+sp <- ggplot(countries_sub, aes(healthexp, infmortality))+
+  geom_point()
+
+sp +
+  annotate('text', x = 4350, y = 5.4 , label = 'Canada')+
+  annotate("text", x=7400, y=6.8, label="USA")
+
+sp +
+  geom_text(aes(label = Name), size = 4)
+
+sp +
+  geom_label(aes(label = Name), size = 4)
+
+```
 
 
 ##### 5.12. Creating a Balloon Plot
 
+```{r}
+library(dplyr)
+
+countries_sub <- countries %>% 
+  filter(Year == 2009, 
+         Name %in%  c("Canada", "Ireland", "United Kingdom", "United States",
+ "New Zealand", "Iceland", "Japan", "Luxembourg",
+ "Netherlands", "Switzerland"))
+
+ggplot(countries_sub, aes(healthexp, infmortality, size =GDP))+
+  geom_point(shape = 21, color = 'black', fill = 'cornsilk') + 
+  scale_size_area(max_size = 15) # make circle bigger
+
+
+```
+
+```{r}
+library(reshape2)
+
+hec <- HairEyeColor[,,'Male'] + HairEyeColor[,,'Female']
+hec <-  melt(hec, value.name = 'count')
+  
+ggplot(hec, aes(Eye, Hair)) +
+  geom_point(aes(size = count), color = 'black', fill = 'cornsilk', shape = 21) +
+  scale_size_area(max_size = 10)+
+  geom_text(aes(label = count), vjust = -1, color = 'grey60')
+
+```
+
+
+
 ##### 5.13. Making a Scatter Plot Matrix
+
+```{r}
+library(dplyr)
+
+countries_sub <- countries %>% 
+  filter(Year == 2009) %>% 
+  dplyr:: select(Name, GDP, laborrate, healthexp, infmortality)
+
+pairs(countries_sub)
+
+```
+
+```{r}
+## custom 
+
+```
 
 
 ### Chap 6: Summarized Data Distributions
 
+```{r}
+ggplot(faithful, aes(waiting))+ 
+  geom_histogram(binwidth = 5, fill = 'white', color = 'black')
 
-#####
-#####
-#####
-#####
-#####
-#####
+# note: add paramter origin = 30 to start at 30
+```
+
+##### 6.1. Making a Basic Histogram
+
+```{r}
+binsize <- diff(range(faithful$waiting)/15)
+ggplot(diamonds, aes(carat))+ 
+  geom_histogram(binsize = binsize, color= 'black', fill = 'white')
+```
+
+
+
+##### 6.2. Making Multiple Histograms from Grouped Data
+
+```{r}
+library(MASS)
+library(dplyr)
+
+birth_2 <- birthwt %>% 
+  mutate(smoke = ifelse( smoke ==1, 'Smokes', 'No Smokes'))
+
+ggplot(birth_2, aes(bwt))+
+  geom_histogram(fill = 'white', color = 'black')+
+  facet_grid(smoke ~ . )
+```
+
+##### 6.3. Making a Density Curve
+
+```{r}
+ggplot(faithful, aes(x=waiting)) + 
+  geom_density(stat = 'density', color = 'red')+
+  expand_limits(y=0)
+```
+
+```{r}
+ggplot(faithful, aes( waiting)) +
+  geom_line(stat = 'density', adjust = 0.25, color = 'red')+
+  geom_line(stat = 'density', adjust = 0.5, color = 'blue')+
+  geom_line(stat = 'density')
+```
+
+```{r}
+ggplot(faithful, aes(waiting)) +
+  geom_density(fill = 'blue', alpha =.2, color = NA)+
+  geom_line(stat = 'density')
+```
+
+```{r}
+ggplot(faithful, aes(waiting, y = ..density..))+
+  geom_histogram(color = 'grey85', size = 0.2, fill = 'cornsilk')+
+  geom_density()+
+  xlim(35, 105)
+
+```
+
+##### 6.4. Making Multiple Density Curves from Grouped Data
+
+```{r}
+library(MASS)
+library(dplyr)
+
+birth_2 <- birthwt %>% 
+  mutate(smoke = as.factor(smoke))
+
+ggplot(birth_2, aes(age, fill = smoke))+
+  geom_density(alpha = 0.4, size = 0.8)
+```
+
+
+```{r}
+ggplot(birth_2, aes(age, y = ..density..))+
+  geom_histogram(bins = 15, fill = 'cornsilk')+
+  geom_density()+
+  facet_grid(smoke~ . )
+```
+
+
+##### 6.5. Making a Frequency Polygon
+
+```{r}
+binsize <- diff(range(faithful$waiting))/15
+ggplot(faithful, aes(waiting))+ 
+  geom_freqpoly(binwidth = binsize)
+```
+
+##### 6.6. Making a Basic Box Plot
+
+```{r}
+library(MASS)
+
+ggplot(birthwt, aes(x=factor(race), y = lwt)) +
+  geom_boxplot(width = .5, outlier.size = 1.5, outlier.shape = 21)
+```
+
+```{r}
+ggplot(birthwt, aes(x=1, lwt))+
+  geom_boxplot()+
+  scale_x_continuous(breaks = NULL)+
+  theme(axis.title.x = element_blank())
+```
+
+##### 6.7. Adding Notches to a Box Plot
+
+```{r}
+library(MASS)
+
+ggplot(birthwt, aes(x = factor(race), bwt))+
+  geom_boxplot(notch = TRUE)
+
+# note: notches are used to see if median differ
+```
+
+##### 6.8. Adding Means to a Box Plot
+
+```{r}
+library(MASS)
+
+ggplot(birthwt, aes(x = factor(race), bwt))+
+  geom_boxplot()+
+  stat_summary(fun.y = 'mean', geom = 'point', shape = 23, size = 3 , fill ='white')
+
+```
+
+
+##### 6.9. Making a Violin Plot
+
+```{r}
+ggplot(heightweight, aes(x= sex, y= heightIn))+
+  geom_violin(trim = TRUE, scale = 'count')+
+  geom_boxplot(width = .1, fill = 'black', outlier.colour = NA)+
+  stat_summary(fun.y = median, geom = 'point', fill = 'white', shape =21, size =2.5)
+```
+
+```{r}
+ggplot(heightweight, aes(sex, heightIn))+
+  geom_violin(adjust =.5)
+```
+
+##### 6.10. Making a Dot Plot
+
+```{r}
+ggplot(countries_sub, aes(x=infmortality))+
+  geom_dotplot()+
+  geom_rug()+
+  scale_y_continuous(breaks = NULL)+
+  theme(axis.title.y = element_blank())
+```
+
+```{r}
+ggplot(countries_sub, aes(x=infmortality))+
+  geom_dotplot(method = 'histodot', binwidth = 2.5, stackdir = 'centerwhole')+
+  geom_rug()+
+  scale_y_continuous(breaks = NULL)+
+  theme(axis.title.y = element_blank())
+```
+
+
+##### 6.11. Making Multiple Dot Plots for Grouped Data
+
+```{r}
+ggplot(heightweight, aes(x=sex, y = heightIn))+
+  geom_dotplot(stackdir = 'center', binaxis = 'y', binwidth = .5, fill = NA)
+```
+
+```{r}
+ggplot(heightweight, aes(x=sex, y=heightIn)) +
+ geom_boxplot(aes(x=as.numeric(sex) + .2, group=sex), width=.25) +
+ geom_dotplot(aes(x=as.numeric(sex) - .2, group=sex), binaxis="y",
+ binwidth=.5, stackdir="center") +
+ scale_x_continuous(breaks=1:nlevels(heightweight$sex),
+ labels=levels(heightweight$sex))
+```
+
+
+
+##### 6.12. Making a Density Plot of Two-Dimensional Data
+
+```{r}
+ggplot(faithful, aes(eruptions, waiting))+
+  geom_point()+
+  stat_density2d(aes(color = ..level..))
+```
+
+```{r}
+ggplot(faithful, aes(eruptions, waiting))+
+  stat_density2d(aes(fill = ..density..), geom = 'raster', contour=FALSE)
+```
+
+
+### Chap 7: Annotations
+
+##### 7.1. Adding Text Annotations
+
+```{r}
+p <- ggplot(faithful, aes(eruptions, waiting))+
+  geom_point()
+
+p + annotate('text', x = 3, y =48 , label = 'Group 1', family = 'serif', fontface = 'italic', color = 'darkred', size =3)+
+  annotate('text', x = 4.5, y =66, label = 'Group 2 ')
+  
+```
+
+
+##### 7.2. Using Mathematical Expressions in Annotations
+
+```{r}
+p <- ggplot(data.frame(x=c (-3,3)), aes(x)) + stat_function(fun = dnorm)
+
+p + annotate('text', x =2, y= 3, parse = TRUE,
+             label = 'frac(1, sqrt(2*pi)) * e ^ {-x^2/2}')
+
+```
+
+##### 7.3. Adding Lines
+
+```{r}
+p <- ggplot(heightweight, aes(ageYear, heightIn, color = sex))+
+  geom_point()
+
+p+
+  geom_hline(yintercept = mean(heightweight$heightIn))+
+  geom_vline(xintercept = mean(heightweight$ageYear))
+```
+
+```{r}
+library(dplyr)
+library(gcookbook)
+
+hw_means_by_sex <- heightweight %>% 
+  group_by(sex) %>% 
+  summarise(heightIn_mean = mean(heightIn), n = n())
+
+ggplot(heightweight, aes(ageYear, heightIn, color =sex)) +
+  geom_point()+
+ geom_hline(data=hw_means_by_sex, yintercept = hw_means_by_sex$heightIn_mean)
+```
+
+```{r}
+library(plyr)
+
+hw_means <- ddply(heightweight, 'sex', summarise, heightIn = mean(heightIn))
+
+p +
+  geom_hline(data=hw_means, aes(yintercept = heightIn, color = sex ), linetype = 'dotted', size =1)
+
+```
+
+
+##### 7.4. Adding Line Segments and Arrows
+
+```{r}
+climate_sub <- climate %>%
+  filter(Source == 'Berkeley')
+
+p <- ggplot(climate_sub, aes(Year, Anomaly10y))+
+  geom_line()
+
+p +
+  annotate('segment', x = 1900, xend = 1975, y= - .5, yend= - .5)+
+  annotate('segment', x = 1850, xend = 1825, y = -0.85, yend = -.95, arrow = arrow(), size =2, color = 'red') + 
+  annotate('segment', x = 1875, xend = 1900 , y = 0.5, yend = 0.5, arrow = arrow(ends = 'both', angle =90, length = unit(.2, 'cm')))
+  
+
+```
+
+
+##### 7.5. Adding a Shaded Rectangle
+
+```{r}
+p + 
+  annotate('rect', xmin = 1950, xmax = 1975, ymin = -1, ymax = 1, alpha=0.1, fill = 'black')
+```
+
+
+##### 7.6. Highlighting an Item
+
+```{r}
+plant_2 <- PlantGrowth %>% 
+  mutate(hl = if_else(group == 'trt2', 'yes', 'no'))
+
+ggplot(plant_2, aes(group, weight, fill = hl)) + 
+  geom_boxplot()+
+  scale_fill_manual(values = c("grey85", "#FFDDCC"), guide = FALSE)
+
+```
+
+##### 7.7. Adding Error Bars
+
+```{r}
+
+cabbage_2 <- cabbage_exp %>% 
+  filter(Cultivar == 'c39')
+
+p <- ggplot(cabbage_2, aes(x= Date, y=Weight))
+
+p + 
+  geom_bar(fill = 'white', color = 'black', stat = 'identity')+
+  geom_errorbar(aes(ymin= Weight -se, ymax = Weight +se), width=.2)
+
+```
+```{r}
+p + 
+  geom_line(aes(group=1))+
+  geom_point(size =3)+
+  geom_errorbar(aes(ymin = Weight - se, ymax = Weight + se))
+```
+
+```{r}
+ggplot(cabbage_exp, aes(x= Date, y=Weight, fill = Cultivar))+
+  geom_bar(stat = 'identity', position = 'dodge', color = 'black')+
+  geom_errorbar(aes(ymin = Weight -  se, ymax = Weight +se), position = position_dodge(0.9), width = 0.2)
+```
+
+##### 7.8. Adding Annotations to Individual Facets
+
+```{r}
+
+p_labels <- data.frame(drv = c('4', 'f', 'r'), label = c('4dw', 'Front', 'Rear'))
+
+ggplot(mpg, aes(displ, hwy))+
+  geom_point()+
+  facet_grid(.~ drv)+
+  geom_text(aes(label = label), data = p_labels, x = 6, y = 40)
+```
+
+```{r}
+# failed
+lm_labels <-  function(data){
+  model <- lm(hwy ~ displ, data = data)
+  formula <- sprintf("italic(y) == %.2f %+.2f * italic(x)", round(coef(model)[1], 2), round(coef(model)[2], 2))
+  r <- cor(data$displ, data$hwy)
+  r2 <- sprintf('italic(R^2) == %.2f', r^2)
+  data.frame(formula = formula , r2=r2, stringsAsFactors = FALSE)
+}
+
+labels <- ddply(mpg, 'drv', lm_labels)
+
+p + geom_smooth(method = 'lm', se=FALSE) +
+  geom_text(x=3,y=40, aes(label = formula), data = labels, parse = TRUE, hjust =0)+
+  geom_text(x=3, y=35, aes(label=r2), data=labels, parse=TRUE, hjust=0)
+
+```
+
+
+### Chap 8: Axis
+
+##### 8.1. Swapping X- and Y-Axes
+
+```{r}
+ggplot(PlantGrowth, aes(x = group, y = weight))+
+  geom_boxplot()+
+  coord_flip()
+```
+
+
+##### 8.2. Setting the Range of a Continuous Axis
+
+##### 8.3. Reversing a Continuous Axis
+
+##### 8.4. Changing the Order of Items on a Categorical Axis
+
+##### 8.5. Setting the Scaling Ratio of the X- and Y-Axes
+
+##### 8.6. Setting the Positions of Tick Marks
+
+##### 8.7. Removing Tick Marks and Labels
+
+##### 8.8. Changing the Text of Tick Labels
+
+##### 8.9. Changing the Appearance of Tick Labels
+
+##### 8.10. Changing the Text of Axis Labels
+
+##### 8.11. Removing Axis Labels
+
+##### 8.12. Changing the Appearance of Axis Labels
+
+##### 8.13. Showing Lines Along the Axes
+
+##### 8.14. Using a Logarithmic Axis
+
+##### 8.15. Adding Ticks for a Logarithmic Axis
+
+##### 8.16. Making a Circular Graph
+
+```{r}
+ggplot(wind, aes(DirCat, fill = SpeedCat))+
+  geom_histogram( binwidth = 15, boundary = -7.5, color = 'black', size = .25)+
+  guides(fill = guide_legend(reverse = TRUE))+
+  coord_polar()+
+  scale_fill_brewer(palette = 'Blues')
+```
+
+##### 8.17. Using Dates on an Axis
+
+```{r}
+str(economics)
+
+econ <- economics %>% 
+  mutate(date >= as.Date('1992-01-05'), date< as.Date('1993-06-30'))
+
+p <- ggplot(econ, aes(date, psavert))+
+  geom_line()
+
+date_breaks <- seq(as.Date("1992-06-01"), as.Date("1993-06-01"), by = '2 month')
+
+p +
+  scale_x_date(breaks = date_breaks)+
+  theme(axis.text.x = element_text(angle = 30, hjust =1))
+
+```
+
+##### 8.18. Using Relative Times on an Axis
+
+
+### Chap 9: Controlling the Overall Appearance of Graphs
+
+
+##### 9.1. Setting the Title of a Graph
+
+##### 9.2. Changing the Appearance of Text
+
+##### 9.3. Using Themes
+
+##### 9.4. Changing the Appearance of Theme Elements
+
+##### 9.5. Creating Your Own Themes
+
+
+##### 9.6. Hiding Grid Lines
+
+
+### Chap 10: Legends
+
+##### 10.1. Removing the Legend
+
+##### 10.2. Changing the Position of a Legend
+
+##### 10.3. Changing the Order of Items in a Legend
+
+##### 10.4. Reversing the Order of Items in a Legend
+
+##### 10.5. Changing a Legend Title
+
+##### 10.6. Changing the Appearance of a Legend Title
+
+##### 10.7. Removing a Legend Title
+
+##### 10.8. Changing the Labels in a Legend
+
+##### 10.9. Changing the Appearance of Legend Labels
+
+##### 10.10. Using Labels with Multiple Lines of Text
+
+### Chap 11: Facets
+
+##### 11.1. Splitting Data into Subplots with Facets
+
+##### 11.2. Using Facets with Different Axes
+
+##### 11.3. Changing the Text of Facet Labels
+
+##### 11.4. Changing the Appearance of Facet Labels and Headers
+
+
+
+### Chap 12: Using Colors in Plots
+
+##### 12.1. Setting the Colors of Objects
+
+##### 12.2. Mapping Variables to Colors
+
+##### 12.3. Using a Different Palette for a Discrete Variable
+
+##### 12.5. Using a Colorblind-Friendly Palette
+
+##### 12.6. Using a Manually Defined Palette for a Continuous Variable
+
+##### 12.7. Coloring a Shaded Region Based on Value
+
+
+### Chap 13: Miscellaneous Graphs
+
+##### 13.1. Making a Correlation Matrix
+
+##### 13.2. Plotting a Function
+
+##### 13.3. Shading a Subregion Under a Function Curve
+
+##### 13.4. Creating a Network Graph
+
+##### 13.5. Using Text Labels in a Network Graph
+
+##### 13.6. Creating a Heat Map
+
+##### 13.7. Creating a Three-Dimensional Scatter Plot
+
+##### 13.8. Adding a Prediction Surface to a ThreeDimensional Plot
+
+##### 13.9. Saving a Three-Dimensional Plot
+
+##### 13.10. Animating a Three-Dimensional Plot
+
+##### 13.11. Creating a Dendrogram
+
+##### 13.12. Creating a Vector Field
+
+##### 13.13. Creating a QQ Plot
+
+##### 13.14. Creating a Graph of an Empirical Cumulative Distribution Function
+##### 13.15. Creating a Mosaic Plot
+
+##### 13.16. Creating a Pie Chart
+
+##### 13.17. Creating a Map
+
+##### 13.18. Creating a Choropleth Map
+
+##### 13.19. Making a Map with a Clean Background
+
+##### 13.20. Creating a Map from a Shapefile
+
+
+### Chap 14: Output for Presentation
+
+
+##### 14.1. Outputting to PDF Vector Files
+
+##### 14.2. Outputting to SVG Vector Files
+
+##### 14.3. Outputting to WMF Vector Files
+
+##### 14.4. Editing a Vector Output File
+
+##### 14.5. Outputting to Bitmap (PNG/TIFF) Files
+
+##### 14.6. Using Fonts in PDF Files
+
+##### 14.7. Using Fonts in Windows Bitmap or Screen Output
+
+### Chap 15: Getting Your Data into Shape
+
+
+##### 15.1. Creating a Data Frame
+
+##### 15.2. Getting Information About a Data Structure
+
+##### 15.3. Adding a Column to a Data Frame
+
+
+
+##### 15.4. Deleting a Column from a Data Frame
+
+##### 15.5. Renaming Columns in a Data Frame
+
+##### 15.6. Reordering Columns in a Data Frame
+
+##### 15.7. Getting a Subset of a Data Frame
+
+##### 15.8. Changing the Order of Factor Levels
+
+##### 15.9. Changing the Order of Factor Levels Based on Data Values
+
+##### 15.10. Changing the Names of Factor Levels
+
+
+##### 15.11. Removing Unused Levels from a Factor
+
+##### 15.12. Changing the Names of Items in a Character Vector
+
+##### 15.13. Recoding a Categorical Variable to Another Categorical 
+Variable
+
+
+
+##### 15.14. Recoding a Continuous Variable to a Categorical Variable
+
+
+##### 15.15. Transforming Variables
+
+##### 15.16. Transforming Variables by Group
+
+##### 15.17. Summarizing Data by Groups
+
+##### 15.18. Summarizing Data with Standard Errors and Confidence 
+Intervals
+
+
+
+##### 15.19. Converting Data from Wide to Long
+
+##### 15.20. Converting Data from Long to Wide
+
+##### 15.21. Converting a Time Series Object to Times and Values
 
 
 
