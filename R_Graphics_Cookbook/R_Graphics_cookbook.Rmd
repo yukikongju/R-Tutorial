@@ -976,34 +976,144 @@ ggplot(PlantGrowth, aes(x = group, y = weight))+
   coord_flip()
 ```
 
-
 ##### 8.2. Setting the Range of a Continuous Axis
+
+```{r}
+library(ggplot2)
+ggplot(PlantGrowth, aes(group, weight)) +
+  geom_boxplot() + 
+  ylim(0, max(PlantGrowth$weight)) +
+  coord_flip()+
+  scale_y_continuous(breaks = NULL)
+```
 
 ##### 8.3. Reversing a Continuous Axis
 
+```{r}
+ggplot(PlantGrowth, aes(group, weight))+
+  geom_boxplot()+
+  scale_y_reverse() 
+```
+
+
 ##### 8.4. Changing the Order of Items on a Categorical Axis
+
+```{r}
+ggplot(PlantGrowth, aes(group, weight))+
+  geom_boxplot() + 
+  scale_x_discrete(limits = c('trt2', 'trt1', 'ctrl'))
+```
+
+```{r}
+ggplot(PlantGrowth, aes(group, weight)) + 
+  geom_boxplot() + 
+  scale_x_discrete(limits = rev(levels(PlantGrowth$group)))
+```
 
 ##### 8.5. Setting the Scaling Ratio of the X- and Y-Axes
 
+```{r}
+library(gcookbook)
+ggplot(marathon, aes(Half, Full)) + 
+  geom_point()+ 
+  coord_fixed(ratio = 1/2)
+```
+
+
 ##### 8.6. Setting the Positions of Tick Marks
+
+```{r}
+ggplot(PlantGrowth, aes(group, weight)) + 
+  geom_boxplot() + 
+  scale_y_continuous(breaks = c(4, 4.25, 4.5, 5, 6, 8))
+```
+
 
 ##### 8.7. Removing Tick Marks and Labels
 
+```{r}
+ggplot(PlantGrowth, aes(group, weight)) + 
+  geom_boxplot()+
+  theme(axis.text.y = element_blank(), 
+        axis.ticks = element_blank())
+```
+
+
 ##### 8.8. Changing the Text of Tick Labels
+
+```{r}
+ggplot(heightweight, aes(ageYear, heightIn)) + 
+  geom_point()+
+  scale_y_continuous(breaks = c(50,56,60,66,72),
+  labels = c('tiny', 'short', 'small', 'medium', 'tall'))
+```
+
+```{r}
+## change ytext to feet
+```
+
 
 ##### 8.9. Changing the Appearance of Tick Labels
 
+```{r}
+ggplot(PlantGrowth, aes(group, weight)) + 
+  geom_boxplot() + 
+  scale_x_discrete(breaks = c('ctrl', 'trt1', 'trt2'), labels = c('Control', 'Treatment 1', 'Treatment 2'))+
+  theme(axis.text.x = element_text(angle = 45, hjust =1, family = 'Times', face = 'italic'))
+```
+
 ##### 8.10. Changing the Text of Axis Labels
+
+```{r}
+ggplot(PlantGrowth, aes(group, weight)) + 
+  geom_point()+
+  xlab('Test Groups')+
+  ylab('weight in kg')
+```
 
 ##### 8.11. Removing Axis Labels
 
+```{r}
+ggplot(PlantGrowth, aes(group, weight))+
+  geom_point()+
+  theme(axis.title = element_blank())
+```
+
 ##### 8.12. Changing the Appearance of Axis Labels
+
+```{r}
+ggplot(PlantGrowth, aes(group, weight))+
+  geom_point()+
+  theme(axis.title.x = element_text(face = 'italic', colour = 'blue'))
+```
 
 ##### 8.13. Showing Lines Along the Axes
 
+```{r}
+ggplot(PlantGrowth, aes(group, weight))+
+  geom_point()+
+  theme(axis.line = element_line(colour = 'black', size = 1))
+```
+
 ##### 8.14. Using a Logarithmic Axis
 
+```{r}
+library(MASS)
+ggplot(Animals, aes(body, brain)) + 
+  geom_text(aes(label = rownames(Animals)))+
+  scale_x_log10()+
+  scale_y_log10()
+```
+
 ##### 8.15. Adding Ticks for a Logarithmic Axis
+
+```{r}
+library(scales)
+ggplot(Animals, aes(body, brain)) + 
+  geom_text(aes(label = rownames(Animals)))
+
+## todo
+```
 
 ##### 8.16. Making a Circular Graph
 
@@ -1019,6 +1129,7 @@ ggplot(wind, aes(DirCat, fill = SpeedCat))+
 
 ```{r}
 str(economics)
+library(dplyr)
 
 econ <- economics %>% 
   mutate(date >= as.Date('1992-01-05'), date< as.Date('1993-06-30'))
@@ -1036,187 +1147,448 @@ p +
 
 ##### 8.18. Using Relative Times on an Axis
 
+```{r}
+
+```
 
 ### Chap 9: Controlling the Overall Appearance of Graphs
 
-
 ##### 9.1. Setting the Title of a Graph
+
+```{r}
+p <- ggplot(heightweight, aes(x=ageYear, y=heightIn)) + geom_point()
+
+p + 
+  ggtitle('Children\'s Age and Height ') + 
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
 
 ##### 9.2. Changing the Appearance of Text
 
+```{r}
+
+```
+
 ##### 9.3. Using Themes
 
+```{r}
+
+```
+
 ##### 9.4. Changing the Appearance of Theme Elements
+```{r}
+
+```
 
 ##### 9.5. Creating Your Own Themes
+```{r}
+custom_theme <- theme_bw() + 
+  theme(text = element_text(colour = 'blue'),
+        axis.title = element_text(size = 2, hjust = 0.5))
+
+p + 
+  custom_theme
+```
 
 
 ##### 9.6. Hiding Grid Lines
+```{r}
+p + 
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())
+```
 
 
 ### Chap 10: Legends
 
 ##### 10.1. Removing the Legend
+```{r}
+p <- ggplot(PlantGrowth, aes(x=group, y=weight, fill=group)) + geom_boxplot()
+
+p + 
+  guides(fill = FALSE)
+
+p + 
+  theme(legend.position = 'none')
+
+```
 
 ##### 10.2. Changing the Position of a Legend
+```{r}
+p <- ggplot(PlantGrowth, aes(group, weight, fill = group)) + 
+  geom_boxplot()+
+  scale_fill_brewer(palette = 'Pastel2')
+
+p + 
+  theme(legend.position = 'top',
+        legend.background = element_rect(fill = 'white', colour = 'black')) 
+```
 
 ##### 10.3. Changing the Order of Items in a Legend
+```{r}
+p+
+  scale_fill_discrete(limits = c('trt1', 'trt2', 'ctrl'))
+
+p + 
+  scale_fill_brewer(limits = c('trt1', 'trt2', 'ctrl'), palette = 'Pastel2')
+
+```
 
 ##### 10.4. Reversing the Order of Items in a Legend
+```{r}
+p + 
+  guides(fill = guide_legend(reverse =TRUE))
+```
 
 ##### 10.5. Changing a Legend Title
+```{r}
+
+```
 
 ##### 10.6. Changing the Appearance of a Legend Title
 
+```{r}
+
+```
 ##### 10.7. Removing a Legend Title
+```{r}
+
+```
 
 ##### 10.8. Changing the Labels in a Legend
+```{r}
+
+```
 
 ##### 10.9. Changing the Appearance of Legend Labels
+```{r}
+
+```
 
 ##### 10.10. Using Labels with Multiple Lines of Text
+```{r}
+
+```
 
 ### Chap 11: Facets
 
 ##### 11.1. Splitting Data into Subplots with Facets
+```{r}
+
+```
 
 ##### 11.2. Using Facets with Different Axes
+```{r}
+
+```
 
 ##### 11.3. Changing the Text of Facet Labels
+```{r}
+
+```
 
 ##### 11.4. Changing the Appearance of Facet Labels and Headers
+```{r}
+
+```
 
 
 
 ### Chap 12: Using Colors in Plots
+```{r}
+
+```
 
 ##### 12.1. Setting the Colors of Objects
+```{r}
+
+```
 
 ##### 12.2. Mapping Variables to Colors
+```{r}
+
+```
 
 ##### 12.3. Using a Different Palette for a Discrete Variable
+```{r}
+
+```
 
 ##### 12.5. Using a Colorblind-Friendly Palette
+```{r}
+
+```
 
 ##### 12.6. Using a Manually Defined Palette for a Continuous Variable
+```{r}
+
+```
 
 ##### 12.7. Coloring a Shaded Region Based on Value
 
+```{r}
+
+```
 
 ### Chap 13: Miscellaneous Graphs
 
 ##### 13.1. Making a Correlation Matrix
+```{r}
+
+```
 
 ##### 13.2. Plotting a Function
+```{r}
+
+```
 
 ##### 13.3. Shading a Subregion Under a Function Curve
+```{r}
+
+```
 
 ##### 13.4. Creating a Network Graph
+```{r}
+
+```
 
 ##### 13.5. Using Text Labels in a Network Graph
+```{r}
+
+```
 
 ##### 13.6. Creating a Heat Map
+```{r}
+
+```
 
 ##### 13.7. Creating a Three-Dimensional Scatter Plot
+```{r}
+
+```
 
 ##### 13.8. Adding a Prediction Surface to a ThreeDimensional Plot
+```{r}
+
+```
 
 ##### 13.9. Saving a Three-Dimensional Plot
+```{r}
+
+```
 
 ##### 13.10. Animating a Three-Dimensional Plot
+```{r}
+
+```
 
 ##### 13.11. Creating a Dendrogram
+```{r}
+
+```
 
 ##### 13.12. Creating a Vector Field
+```{r}
+
+```
 
 ##### 13.13. Creating a QQ Plot
+```{r}
+
+```
 
 ##### 13.14. Creating a Graph of an Empirical Cumulative Distribution Function
+
+```{r}
+
+```
+
 ##### 13.15. Creating a Mosaic Plot
+```{r}
+
+```
 
 ##### 13.16. Creating a Pie Chart
+```{r}
+
+```
 
 ##### 13.17. Creating a Map
+```{r}
+
+```
 
 ##### 13.18. Creating a Choropleth Map
+```{r}
+
+```
 
 ##### 13.19. Making a Map with a Clean Background
+```{r}
+
+```
 
 ##### 13.20. Creating a Map from a Shapefile
+```{r}
+
+```
 
 
 ### Chap 14: Output for Presentation
 
 
 ##### 14.1. Outputting to PDF Vector Files
+```{r}
+
+```
 
 ##### 14.2. Outputting to SVG Vector Files
+```{r}
+
+```
 
 ##### 14.3. Outputting to WMF Vector Files
+```{r}
+
+```
 
 ##### 14.4. Editing a Vector Output File
+```{r}
+
+```
 
 ##### 14.5. Outputting to Bitmap (PNG/TIFF) Files
+```{r}
+
+```
 
 ##### 14.6. Using Fonts in PDF Files
+```{r}
+
+```
 
 ##### 14.7. Using Fonts in Windows Bitmap or Screen Output
+```{r}
+
+```
 
 ### Chap 15: Getting Your Data into Shape
 
 
 ##### 15.1. Creating a Data Frame
+```{r}
+
+```
 
 ##### 15.2. Getting Information About a Data Structure
+```{r}
+
+```
 
 ##### 15.3. Adding a Column to a Data Frame
+```{r}
+
+```
 
 
 
 ##### 15.4. Deleting a Column from a Data Frame
+```{r}
+
+```
 
 ##### 15.5. Renaming Columns in a Data Frame
+```{r}
+
+```
 
 ##### 15.6. Reordering Columns in a Data Frame
+```{r}
+
+```
 
 ##### 15.7. Getting a Subset of a Data Frame
+```{r}
+
+```
 
 ##### 15.8. Changing the Order of Factor Levels
+```{r}
+
+```
 
 ##### 15.9. Changing the Order of Factor Levels Based on Data Values
+```{r}
+
+```
 
 ##### 15.10. Changing the Names of Factor Levels
+```{r}
+
+```
 
 
 ##### 15.11. Removing Unused Levels from a Factor
+```{r}
+
+```
 
 ##### 15.12. Changing the Names of Items in a Character Vector
+```{r}
 
-##### 15.13. Recoding a Categorical Variable to Another Categorical 
-Variable
+```
+
+##### 15.13. Recoding a Categorical Variable to Another Categorical Variable
+```{r}
+
+```
 
 
 
 ##### 15.14. Recoding a Continuous Variable to a Categorical Variable
 
+```{r}
+
+```
 
 ##### 15.15. Transforming Variables
+```{r}
+
+```
 
 ##### 15.16. Transforming Variables by Group
+```{r}
+
+```
 
 ##### 15.17. Summarizing Data by Groups
+```{r}
 
-##### 15.18. Summarizing Data with Standard Errors and Confidence 
-Intervals
+```
+
+##### 15.18. Summarizing Data with Standard Errors and Confidence Intervals
+```{r}
+
+```
 
 
 
 ##### 15.19. Converting Data from Wide to Long
+```{r}
+
+```
 
 ##### 15.20. Converting Data from Long to Wide
+```{r}
+
+```
 
 ##### 15.21. Converting a Time Series Object to Times and Values
 
+```{r}
+
+```
 
 
 
